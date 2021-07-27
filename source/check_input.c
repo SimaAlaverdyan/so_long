@@ -14,8 +14,9 @@ void	ft_checkinput1(t_utilities *res)
 			else
 				res->map.matrix[res->player.x][res->player.y] = '0';
 			res->player.x--;
-			// if (res->map.matrix[res->player.x][res->player.y] == 'E'
-			// 	&& res->player.items >= res->player.goal)
+			if (res->map.matrix[res->player.x][res->player.y] == 'E'
+				&& res->player.items >= res->player.goal)
+				exit(0);
 			// 	ft_triggervictory(res);
 			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
 			// 	ft_triggerloss(res);
@@ -39,8 +40,9 @@ void	ft_checkinput2(t_utilities *res)
 			else
 				res->map.matrix[res->player.x][res->player.y] = '0';
 			res->player.y--;
-			// if (res->map.matrix[res->player.x][res->player.y] == 'E'
-			// 	&& res->player.items >= res->player.goal)
+			if (res->map.matrix[res->player.x][res->player.y] == 'E'
+				&& res->player.items >= res->player.goal)
+				exit(0);
 			// 	ft_triggervictory(res);
 			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
 			// 	ft_triggerloss(res);
@@ -64,8 +66,9 @@ void	ft_checkinput3(t_utilities *res)
 			else
 				res->map.matrix[res->player.x][res->player.y] = '0';
 			res->player.x++;
-			// if (res->map.matrix[res->player.x][res->player.y] == 'E'
-			// 	&& res->player.items >= res->player.goal)
+			if (res->map.matrix[res->player.x][res->player.y] == 'E'
+				&& res->player.items >= res->player.goal)
+				exit(0);
 			// 	ft_triggervictory(res);
 			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
 			// 	ft_triggerloss(res);
@@ -89,8 +92,9 @@ void	ft_checkinput4(t_utilities *res)
 			else
 				res->map.matrix[res->player.x][res->player.y] = '0';
 			res->player.y++;
-			// if (res->map.matrix[res->player.x][res->player.y] == 'E'
-			// 	&& res->player.items >= res->player.goal)
+			if (res->map.matrix[res->player.x][res->player.y] == 'E'
+				&& res->player.items >= res->player.goal)
+				exit(0);
 			// 	ft_triggervictory(res);
 			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
 			// 	ft_triggerloss(res);

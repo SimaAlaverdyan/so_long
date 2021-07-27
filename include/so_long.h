@@ -120,5 +120,5 @@ void	ft_initplayer(t_utilities *util, int posx, int posy);
 void	ft_initexit(t_utilities *util, int posx, int posy);
 void	ft_selectsprite(t_utilities *res, int i, int j);
 void	ft_putspritepixel(t_utilities *res, int i, int j);
-
+int     check_norms(t_utilities util);
 #endif

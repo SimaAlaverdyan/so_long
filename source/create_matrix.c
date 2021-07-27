@@ -18,13 +18,10 @@ t_RowsCols matrix_row_col(int fd)
     char *line;
     int row;
     int col;
-    printf("5\n");
     line = NULL;
     row = 0;
-    printf("66\n");
     while (get_next_line(fd, &line) != 0)
     {
-        printf("7\n");
         row++;
         free(line);
         col = ft_strlen(line);
@@ -59,10 +56,8 @@ char **create_matrix(char *path, int fd, int rows, int cols)
         while (j < cols)
         {
             matrix[i][j] = line[j];
-            // write(1, &matrix[i][j], 1);
             j++;
         }
-        // write(1, "\n", 1);
         i++;
         free(line);
     }

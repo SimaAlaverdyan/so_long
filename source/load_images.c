@@ -8,7 +8,7 @@ void ft_startvalues(t_utilities *util)
   util->player.x = -1;
   util->player.y = -1;
   util->player.items = 0;
-  // util->player.moves = 0;
+  util->player.steps = 0;
   // util->time = 0;
   util->state = 1;
   util->keys.check = 1;
@@ -58,11 +58,9 @@ void ft_load_images(t_utilities *util)
 
 t_utilities start(int fd, char *argv)
 {
-    printf("3\n");  
   t_utilities util;
   t_RowsCols result;
   result = matrix_row_col(fd);
-  printf("4\n");
   
   util.map.height = result.rows;
   util.map.width = result.cols;

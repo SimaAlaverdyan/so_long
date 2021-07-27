@@ -2,13 +2,13 @@
 
 int	ft_render(t_utilities *util)
 {
-	// if (util->state)
-	// {
-	// 	ft_checkinput1(util);
-	// 	ft_checkinput2(util);
-	// 	ft_checkinput3(util);
-	// 	ft_checkinput4(util);
-	// }
+	if (util->state)
+	{
+		ft_checkinput1(util);
+		ft_checkinput2(util);
+		ft_checkinput3(util);
+		ft_checkinput4(util);
+	}
 	util->i = 0;
 	while (util->i < util->map.height)
 	{
