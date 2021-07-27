@@ -1,11 +1,14 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
+#define BUFFER_SIZE 1
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <mlx.h>
+// #include "../libft/libft.h"
 
 typedef struct s_RowsCols
 {
@@ -87,12 +90,13 @@ typedef struct s_utilities
     t_img       texit;
 }		        t_utilities;
 
-t_RowsCols matrix_row_col(int fd);
-int get_next_line(int fd, char **line);
-char *ft_strjoin(char *s1, char *s2);
-char *ft_strchr(char *s, int c);
-size_t ft_strlen(char *str);
-char *leftover(char *tmp);
+t_RowsCols      matrix_row_col(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlen(char *str);
+char	*ft_strchr(char *s, int c);
+int				get_next_line(int fd, char **line);
+char			*ft_strchr(char *s, int c);
+char            *leftover(char *tmp);
 char *the_line(char *tmp);
 char **create_matrix(char *path, int fd, int rows, int cols);
 void matrix_rows_cols(int fd, int rows, int cols);
@@ -105,5 +109,16 @@ int	ft_mlx_released(int keycode, t_keys *keys);
 t_utilities start(int fd, char *argv);
 int	ft_render(t_utilities *util);
 void	ft_putmoves(t_utilities *util);
+void	ft_checkinput1(t_utilities *res);
+void	ft_checkinput2(t_utilities *res);
+void	ft_checkinput3(t_utilities *res);
+void	ft_checkinput4(t_utilities *res);
+void	ft_mlx_draw_unit(t_utilities *res, int i, int j);
+void    ft_setmatrixcharacters(t_utilities *util);
+void	ft_exit(char *str);
+void	ft_initplayer(t_utilities *util, int posx, int posy);
+void	ft_initexit(t_utilities *util, int posx, int posy);
+void	ft_selectsprite(t_utilities *res, int i, int j);
+void	ft_putspritepixel(t_utilities *res, int i, int j);
 
 #endif

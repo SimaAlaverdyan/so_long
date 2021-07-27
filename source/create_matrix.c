@@ -18,12 +18,13 @@ t_RowsCols matrix_row_col(int fd)
     char *line;
     int row;
     int col;
-
+    printf("5\n");
     line = NULL;
     row = 0;
-
+    printf("66\n");
     while (get_next_line(fd, &line) != 0)
     {
+        printf("7\n");
         row++;
         free(line);
         col = ft_strlen(line);
@@ -58,14 +59,43 @@ char **create_matrix(char *path, int fd, int rows, int cols)
         while (j < cols)
         {
             matrix[i][j] = line[j];
+            // write(1, &matrix[i][j], 1);
             j++;
         }
+        // write(1, "\n", 1);
         i++;
         free(line);
     }
     close(fd);
 
     return (matrix);
+}
+
+void ft_setmatrixcharacters(t_utilities *util)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < util->map.height)
+    {
+        j = 0;
+        while (j < util->map.width)
+        {
+            if (util->map.matrix[i][j] == 'C')
+                util->player.goal++;
+            else if (util->map.matrix[i][j] == 'E')
+            {
+                ft_initexit(util, i, j);
+            }
+            else if (util->map.matrix[i][j] == 'P')
+            {
+                ft_initplayer(util, i, j);
+            }
+            j++;
+        }
+        i++;
+    }
 }
 
 int border_character_check(char **matrix, int rows, int cols)
@@ -115,7 +145,7 @@ int border_character_check(char **matrix, int rows, int cols)
     }
     return 1;
 }
- 
+
 int inner_character_check(char **matrix, int rows, int cols)
 {
     int i;

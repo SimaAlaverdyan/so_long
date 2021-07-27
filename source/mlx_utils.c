@@ -57,17 +57,17 @@ void	ft_putspritepixel(t_utilities *res, int i, int j)
 {
 	res->texx = (int)((float)res->y / res->unitsize * res->sprite.width);
 	res->texy = (int)((float)res->x / res->unitsize * res->sprite.height);
-	// if (res->map.matrix[i][j] != 'F')
-	// {
-	// 	if (ft_mlx_get_color(&res->sprite, res->texx, res->texy) != 0xFF000000)
-	// 		ft_mlx_pixel_put(&res->screen, j * res->unitsize + res->y,
-	// 			i * res->unitsize
-	// 			+ res->x, ft_mlx_get_color(&res->sprite, res->texx, res->texy));
-	// }
-	// else
-	// {
+	if (res->map.matrix[i][j] != 'F')
+	{
+		if (ft_mlx_get_color(&res->sprite, res->texx, res->texy) != 0xFF000000)
+			ft_mlx_pixel_put(&res->screen, j * res->unitsize + res->y,
+				i * res->unitsize
+				+ res->x, ft_mlx_get_color(&res->sprite, res->texx, res->texy));
+	}
+	else
+	{
 		ft_mlx_pixel_put(&res->screen, j * res->unitsize + res->y,
 			i * res->unitsize
 			+ res->x, ft_mlx_get_color(&res->sprite, res->texx, res->texy));
-	// }
+	}
 }

@@ -1,5 +1,13 @@
 #include "../include/so_long.h"
 
+// void	ft_exit(char *str)
+// {
+// 	write(1, "[so_long] ", 10);
+// 	ft_putstr_fd(str, 1);
+// 	write(1, "\n", 1);
+// 	exit(0);
+// }
+
 int	ft_mlx_pressed(int keycode, t_keys *keys)
 {
 	// printf("Hello from key_hook!\n");

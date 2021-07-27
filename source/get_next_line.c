@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 14:51:15 by salaverd          #+#    #+#             */
+/*   Updated: 2021/03/02 17:57:27 by salaverd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-char *the_line(char *tmp)
+char	*the_line(char *tmp)
 {
-	int i;
-	int j;
-	char *line;
+	int		i;
+	int		j;
+	char	*line;
 
 	j = 0;
 	i = 0;
@@ -21,11 +33,11 @@ char *the_line(char *tmp)
 	return (line);
 }
 
-char *leftover(char *tmp)
+char	*leftover(char *tmp)
 {
-	int i;
-	int j;
-	char *ptr;
+	int		i;
+	int		j;
+	char	*ptr;
 
 	j = 0;
 	i = 0;
@@ -48,12 +60,12 @@ char *leftover(char *tmp)
 	return (ptr);
 }
 
-int get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	int r;
-	char *buf;
+	int			r;
+	char		*buf;
 	static char *tmp;
-	int BUFFER_SIZE = 42;
+
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
 	if (!(buf = (char *)malloc(BUFFER_SIZE + 1)))
@@ -64,7 +76,7 @@ int get_next_line(int fd, char **line)
 		buf[r] = '\0';
 		tmp = ft_strjoin(tmp, buf);
 		if (ft_strchr(buf, '\n'))
-			break;
+			break ;
 	}
 	free(buf);
 	*line = the_line(tmp);
