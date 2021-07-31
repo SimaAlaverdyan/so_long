@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 14:51:15 by salaverd          #+#    #+#             */
-/*   Updated: 2021/03/02 17:57:27 by salaverd         ###   ########.fr       */
+/*   Created: 2021/07/28 17:17:28 by salaverd          #+#    #+#             */
+/*   Updated: 2021/07/28 17:17:33 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*leftover(char *tmp)
 		free(tmp);
 		return (NULL);
 	}
-	if (!(ptr = (char *)malloc(ft_strlen(tmp) - i + 1)))
+	if (!(ptr = (char *)malloc(ft_gnl_strlen(tmp) - i + 1)))
 		return (NULL);
 	i++;
 	while (tmp[i])
@@ -74,8 +74,8 @@ int		get_next_line(int fd, char **line)
 	while ((r = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[r] = '\0';
-		tmp = ft_strjoin(tmp, buf);
-		if (ft_strchr(buf, '\n'))
+		tmp = ft_gnl_strjoin(tmp, buf);
+		if (ft_gnl_strchr(buf, '\n'))
 			break ;
 	}
 	free(buf);

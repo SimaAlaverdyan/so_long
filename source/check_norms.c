@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_norms.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 17:16:30 by salaverd          #+#    #+#             */
+/*   Updated: 2021/07/28 17:16:51 by salaverd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int     exit_count(t_utilities util)
@@ -9,10 +21,10 @@ int     exit_count(t_utilities util)
     i = 0;
     count = 0;
 
-    while (i < util.map.width)
+    while (i < util.map.height)
     {
         j = 0;
-        while (j < util.map.height)
+        while (j < util.map.width)
         {
             if (util.map.matrix[i][j] == 'E')
                 count++;
@@ -25,17 +37,17 @@ int     exit_count(t_utilities util)
 
 int     player_count(t_utilities util)
 {
-    int count;
     int i;
     int j;
+    int count;
 
     i = 0;
     count = 0;
 
-    while (i < util.map.width)
+    while (i < util.map.height)
     {
         j = 0;
-        while (j < util.map.height)
+        while (j < util.map.width)
         {
             if (util.map.matrix[i][j] == 'P')
                 count++;
@@ -46,47 +58,48 @@ int     player_count(t_utilities util)
     return (count);
 }
 
+int     ft_check_extension(char *path, char *ext)
+{
+	int	pathlen;
+	int	extlen;
+
+	pathlen = ft_strlen(path);
+	extlen = ft_strlen(ext);
+	if (!(extlen == 4) || !(pathlen > 4))
+		return (0);
+	return (*(path + pathlen - 1) == *(ext + extlen - 1)
+		&& *(path + pathlen - 2) == *(ext + extlen - 2)
+		&& *(path + pathlen - 3) == *(ext + extlen - 3)
+		&& *(path + pathlen - 4) == *(ext + extlen - 4));
+}
+
 int     check_norms(t_utilities util)
 {
-    if (util.map.height == util.map.width)
+    int exitCount;
+    int playerCount;
+
+    exitCount = exit_count(util);
+    playerCount = player_count(util);
+
+    if (border_character_check(util.map.matrix, util.map.height, util.map.width) == 0)
     {
-        exit(0);
-        printf("The map must be rectangular");
-    }
-    else if (border_character_check(util.map.matrix, util.map.height, util.map.width) == 0)
-    {
-        exit(0);
-        printf("The map must be closed/surrounded by walls");
+        ft_exit("The map must be closed/surrounded by walls");
     }
     else if (inner_character_check(util.map.matrix, util.map.height, util.map.width) == 0)
     {
-        exit(0);
-        printf("The map must have only '1' '0' 'P' 'C' 'E' 'F' characters");
+        ft_exit("The map must have only '1' '0' 'P' 'C' 'E' 'F' characters");
     }
     else if (util.player.goal == 0)
     {
-        exit(0);
-        printf("There is no food in this map");
+        ft_exit("There is no food in this map");
     }
-    else if (exit_count(util) == 0)
+    else if (playerCount == 0)
     {
-        exit(0);
-        printf("The map must have exit");
+        ft_exit("The map must have start position");
     }
-    else if (exit_count(util) > 1)
+    else if (exitCount == 0)
     {
-        exit(0);
-        printf("The map must have only one exit");
+        ft_exit("The map must have exit");
     }
-    else if (player_count(util) == 0)
-    {
-        exit(0);
-        printf("The map must have start position");
-    }
-    else if (player_count(util) > 1)
-    {
-        exit(0);
-        printf("The map must have only one start position");
-    }
-    return (0);
+    return (1);
 }

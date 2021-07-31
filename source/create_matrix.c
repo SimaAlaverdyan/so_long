@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 12:15:40 by salaverd          #+#    #+#             */
-/*   Updated: 2021/07/15 12:15:44 by salaverd         ###   ########.fr       */
+/*   Created: 2021/07/28 17:17:07 by salaverd          #+#    #+#             */
+/*   Updated: 2021/07/28 17:17:10 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,21 @@ t_RowsCols matrix_row_col(int fd)
     t_RowsCols s;
     char *line;
     int row;
+    int ret;
     int col;
+
+    ret = 1;
     line = NULL;
     row = 0;
-    while (get_next_line(fd, &line) != 0)
+    while (ret)
     {
+        ret = get_next_line(fd, &line);
         row++;
         free(line);
-        col = ft_strlen(line);
+        col = ft_gnl_strlen(line);
+
+        if(!ret)
+            break;
     }
     s.rows = row;
     s.cols = col;
@@ -40,7 +47,7 @@ char **create_matrix(char *path, int fd, int rows, int cols)
 
     i = 0;
     j = 0;
-    ret = 0;
+    ret = 1;
     line = NULL;
 
     matrix = (char **)malloc(rows * sizeof(char *));
@@ -50,9 +57,12 @@ char **create_matrix(char *path, int fd, int rows, int cols)
 
     fd = open(path, O_RDONLY);
 
-    while ((ret = get_next_line(fd, &line)) != 0)
+    while (ret)
     {
+        ret = get_next_line(fd, &line);
         j = 0;
+        if((int)(ft_strlen(line)) != cols)
+            ft_exit("The map must be rectangular");
         while (j < cols)
         {
             matrix[i][j] = line[j];
@@ -60,6 +70,8 @@ char **create_matrix(char *path, int fd, int rows, int cols)
         }
         i++;
         free(line);
+        if(!ret)
+            break;
     }
     close(fd);
 
@@ -152,7 +164,7 @@ int inner_character_check(char **matrix, int rows, int cols)
         j = 1;
         while (j < cols - 1)
         {
-            if (matrix[i][j] != 'E' && matrix[i][j] != 'C' && matrix[i][j] != 'P' && matrix[i][j] != '0' && matrix[i][j] != '1')
+            if (matrix[i][j] != 'E' && matrix[i][j] != 'C' && matrix[i][j] != 'P' && matrix[i][j] != '0' && matrix[i][j] != '1' && matrix[i][j] != 'F')
             {
                 return 0;
             }

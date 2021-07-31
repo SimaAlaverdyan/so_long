@@ -2,18 +2,18 @@ NAME			=	so_long
 
 source			=	main.c \
 					get_next_line.c \
-					get_next_line_utils.c \
 					create_matrix.c \
 					key_events.c \
 					load_images.c \
 					mlx_utils.c \
 					put_images.c \
 					check_input.c \
-					check_norms.c
+					check_norms.c \
+					win_lose.c
 
 HEAD			=	include/so_long.h
 
-# LIBFT			=	libft/libft.a
+LIBFT			=	libft/libft.a
 
 OBJS			=	${addprefix source/,${source:.c=.o}}
 
@@ -28,19 +28,18 @@ CFLAGS			=	-Wall -Werror -Wextra -g -I $(HEAD)
 
 $(NAME)			:	${OBJS} ${LIBFT} ${HEAD}
 					make -C mlx
-					${CC} ${CFLAGS} ${LD_FLAGS} ${MLX_FLAGS} ${OBJS} -o ${NAME} 
-					# ${CC} ${CFLAGS} ${LD_FLAGS} ${MLX_FLAGS} ${OBJS} -o ${NAME} $(LIBFT) 
+					${CC} ${CFLAGS} ${LD_FLAGS} ${MLX_FLAGS} ${OBJS} -o ${NAME} $(LIBFT) 
 
 
-# $(LIBFT)		:
-# 					make -C ./libft
+$(LIBFT)		:
+					make -C ./libft
 
 all				:	${NAME}
 
 
 clean			:
 					make clean -C mlx
-					# make clean -C libft
+					make clean -C libft
 					@rm -rf ${OBJS}
 
 fclean			:	clean
@@ -49,3 +48,5 @@ fclean			:	clean
 re				:	fclean all
 
 .PHONY			:	all clean fclean re
+
+NY			:	all clean fclean re

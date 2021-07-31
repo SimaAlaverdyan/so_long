@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 17:16:19 by salaverd          #+#    #+#             */
+/*   Updated: 2021/07/28 17:16:21 by salaverd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	ft_checkinput1(t_utilities *res)
@@ -16,10 +28,9 @@ void	ft_checkinput1(t_utilities *res)
 			res->player.x--;
 			if (res->map.matrix[res->player.x][res->player.y] == 'E'
 				&& res->player.items >= res->player.goal)
-				exit(0);
-			// 	ft_triggervictory(res);
-			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
-			// 	ft_triggerloss(res);
+				ft_triggervictory(res);
+			else if (res->map.matrix[res->player.x][res->player.y] == 'F')
+				ft_triggerloss(res);
 			res->map.matrix[res->player.x][res->player.y] = 'P';
 			res->keys.up = 0;
 		}
@@ -42,10 +53,10 @@ void	ft_checkinput2(t_utilities *res)
 			res->player.y--;
 			if (res->map.matrix[res->player.x][res->player.y] == 'E'
 				&& res->player.items >= res->player.goal)
-				exit(0);
-			// 	ft_triggervictory(res);
-			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
-			// 	ft_triggerloss(res);
+				// exit(0);
+				ft_triggervictory(res);
+			else if (res->map.matrix[res->player.x][res->player.y] == 'F')
+				ft_triggerloss(res);
 			res->map.matrix[res->player.x][res->player.y] = 'P';
 			res->keys.right = 0;
 		}
@@ -68,10 +79,10 @@ void	ft_checkinput3(t_utilities *res)
 			res->player.x++;
 			if (res->map.matrix[res->player.x][res->player.y] == 'E'
 				&& res->player.items >= res->player.goal)
-				exit(0);
-			// 	ft_triggervictory(res);
-			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
-			// 	ft_triggerloss(res);
+				// exit(0);
+				ft_triggervictory(res);
+			else if (res->map.matrix[res->player.x][res->player.y] == 'F')
+				ft_triggerloss(res);
 			res->map.matrix[res->player.x][res->player.y] = 'P';
 			res->keys.down = 0;
 		}
@@ -94,10 +105,9 @@ void	ft_checkinput4(t_utilities *res)
 			res->player.y++;
 			if (res->map.matrix[res->player.x][res->player.y] == 'E'
 				&& res->player.items >= res->player.goal)
-				exit(0);
-			// 	ft_triggervictory(res);
-			// else if (res->map.matrix[res->player.x][res->player.y] == 'F')
-			// 	ft_triggerloss(res);
+				ft_triggervictory(res);
+			else if (res->map.matrix[res->player.x][res->player.y] == 'F')
+				ft_triggerloss(res);
 			res->map.matrix[res->player.x][res->player.y] = 'P';
 			res->keys.left = 0;
 		}

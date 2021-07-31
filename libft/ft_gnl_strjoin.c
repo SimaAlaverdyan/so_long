@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_gnl_strjoin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 14:52:38 by salaverd          #+#    #+#             */
-/*   Updated: 2021/03/02 17:57:44 by salaverd         ###   ########.fr       */
+/*   Created: 2021/07/28 17:35:35 by salaverd          #+#    #+#             */
+/*   Updated: 2021/07/28 17:35:36 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*join;
 	int		i;
 	int		j;
 
 	if (!(join = malloc(sizeof(char) *
-					(ft_strlen(s1) + ft_strlen(s2) + 1))))
+					(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -33,29 +33,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	join[j] = '\0';
 	free(s1);
 	return (join);
-}
-
-size_t	ft_strlen(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	if (c == '\0')
-		return (&((char *)s)[ft_strlen(s)]);
-	while (*s)
-	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
 }
